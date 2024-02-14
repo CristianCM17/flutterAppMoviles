@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/dashboard_screen.dart';
 import 'package:flutter_application_1/screens/splash_screen.dart';
+import 'package:flutter_application_1/setting/app_value_notifier.dart';
+import 'package:flutter_application_1/setting/theme.dart';
 
 
 void main() => runApp(MyApp());
@@ -10,11 +12,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SplashScreen(),
-      routes: { //darle alias a las rutas
-        "/dash" : (BuildContext context) => DashboardScreen(),
-      },
+    return ValueListenableBuilder(
+      valueListenable: AppValueNotifier.banTheme, //el valor del value que cambia en base al boton
+      builder: (context, value, child) {
+        return MaterialApp(
+          theme: value ? ThemeApp.darkTheme(context) : ThemeApp.lightTheme(context) , //cambia cuando se apreta el boton
+          home: SplashScreen(),
+          routes: { //darle alias a las rutas
+            "/dash" : (BuildContext context) => DashboardScreen(),
+          },
+        );
+      }
     );
   }
 }
