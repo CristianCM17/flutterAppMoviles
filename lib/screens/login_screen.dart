@@ -69,9 +69,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-          //  Image.asset('images/letras.png'),
             Positioned(
-              bottom: 50,
+              top: 220,
+              child: Container(
+                child: Image.asset('images/letras.png'),
+                width: MediaQuery.of(context).size.width*.9,
+                height: 200,
+                ),
+              
+              ),
+            Positioned(
+              bottom: 40,
               child: Container(
                 height: 200,
                 width: MediaQuery.of(context).size.width*.9,
@@ -117,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
               )
             ),
             isLoading ? const Positioned(
-              top: 260,
+              top: 220,
               child: CircularProgressIndicator(
                 color: Colors.white,
               )
