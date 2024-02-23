@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/dashboard_screen.dart';
+import 'package:flutter_application_1/screens/despensa_screen.dart';
 import 'package:flutter_application_1/screens/splash_screen.dart';
 import 'package:flutter_application_1/setting/app_value_notifier.dart';
 import 'package:flutter_application_1/setting/theme.dart';
@@ -16,10 +17,12 @@ class MyApp extends StatelessWidget {
       valueListenable: AppValueNotifier.banTheme, //el valor del value que cambia en base al boton
       builder: (context, value, child) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           theme: value ? ThemeApp.darkTheme(context) : ThemeApp.lightTheme(context) , //cambia cuando se apreta el boton
           home: SplashScreen(),
           routes: { //darle alias a las rutas
             "/dash" : (BuildContext context) => DashboardScreen(),
+            "/despensa" : (BuildContext context) => DespensaScreen(),
           },
         );
       }
