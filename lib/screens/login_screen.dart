@@ -99,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               context, 
                               MaterialPageRoute(builder: (context) => new DashboardScreen(),)
                             );*/
-                            Navigator.pushNamed(context, "/dash").then((value){ //si paso parametros el values los trae
+                            Navigator.pushNamed(context, "/onboard").then((value){ //si paso parametros el values los trae
                               setState(() {
                                 isLoading= !isLoading;
                               });

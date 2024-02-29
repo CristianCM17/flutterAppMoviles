@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/dashboard_screen.dart';
 import 'package:flutter_application_1/screens/despensa_screen.dart';
+import 'package:flutter_application_1/screens/onBoarding_screen.dart';
 import 'package:flutter_application_1/screens/splash_screen.dart';
 import 'package:flutter_application_1/setting/app_value_notifier.dart';
 import 'package:flutter_application_1/setting/theme.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
           routes: { //darle alias a las rutas
             "/dash" : (BuildContext context) => DashboardScreen(),
             "/despensa" : (BuildContext context) => DespensaScreen(),
+            "/onboard" : (BuildContext context) => OnBoardingScreen()
           },
         );
       }
