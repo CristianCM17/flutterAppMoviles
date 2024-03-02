@@ -18,10 +18,34 @@ class _IntroPage3State extends State<IntroPage3> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Lottie.asset(
-          "images/pika.json"
-        ),
+      backgroundColor: const Color.fromARGB(255, 114, 197, 243),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width*.7,
+            
+            child: Text("Descubre tu Pokemon Favorito",style: TextStyle(
+              color: Colors.white,
+              fontSize: 40,
+              fontWeight: FontWeight.w800,
+              shadows: [
+                Shadow(
+                  color: Colors.black.withOpacity(0.3),
+                  blurRadius: 5,
+                  offset: Offset(0, 3), 
+                )
+              ]
+            ),
+            ),
+          ),
+          Container(
+            
+            child: Lottie.asset(
+            "images/snorlax.json"
+          ),
+          ),
+        ] 
       ),
 
 

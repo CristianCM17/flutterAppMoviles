@@ -48,7 +48,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 onTap: (){
                   _controller.jumpToPage(2);
                 },
-                child: Text("Skip")
+                child: Text("Skip",style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
+                ),)
                 ),
 
               SmoothPageIndicator(controller: _controller, count: 3),
@@ -60,14 +64,18 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   onTap: (){
                     Navigator.pushNamed(context, "/dash");
                   },
-                child: Text("Done")
+                child: Text("Done",style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
+                ))
                 ): GestureDetector(
                   onTap: (){
                   _controller.nextPage(duration: Duration(milliseconds: 500), 
                   curve: Curves.easeIn//estás indicando que deseas una transición que comience lentamente y luego se acelere más rápidamente 
                   );
                 },
-                child: Icon(Icons.arrow_circle_right_outlined)
+                child: Icon(Icons.arrow_circle_right_outlined,size: 30,)
                 ),
             ],
           ),

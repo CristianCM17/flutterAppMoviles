@@ -40,6 +40,7 @@ class _IntroPage1State extends State<IntroPage1> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[100],
       body: Stack(
         children: [
           Container(

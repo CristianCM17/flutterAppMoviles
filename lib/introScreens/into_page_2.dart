@@ -39,6 +39,7 @@ class _IntroPage2State extends State<IntroPage2> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         alignment: Alignment.center,
         children:[ 
@@ -51,10 +52,17 @@ class _IntroPage2State extends State<IntroPage2> with SingleTickerProviderStateM
 
         Container(
           alignment: Alignment(0, -0.45),
-          child: Text("REVIVE LA NOSTALGIA",
+          child: Text("Revive la Nostalgia",
           style: TextStyle(
-            fontSize: 30,
+            fontSize: 35,
             fontWeight: FontWeight.w800,
+            shadows: [
+                Shadow(
+                  color: Colors.black.withOpacity(0.3),
+                  blurRadius: 5,
+                  offset: Offset(0, 3), 
+                )
+              ]
           ),
           ),
         ),
