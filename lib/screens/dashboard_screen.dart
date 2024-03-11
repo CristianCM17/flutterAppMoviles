@@ -51,6 +51,15 @@ class DashboardScreen extends StatelessWidget {
                 Navigator.pushNamed(context, "/movies")
               },
             ),
+            ListTile(
+              leading: Icon(Icons.app_registration_rounded), //elementos de lado izquiero y derecho
+              title: Text("Registrar"),
+              subtitle: Text("Registrar Usuario"),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () => {
+                Navigator.pushNamed(context, "/register")
+              },
+            ),
             DayNightSwitcher(
               isDarkModeEnabled: AppValueNotifier.banTheme.value, //trae el valor del value notifier
               onStateChanged: (isDarkModeEnabled) {

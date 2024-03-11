@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/Register_Screen.dart';
 import 'package:flutter_application_1/screens/dashboard_screen.dart';
 import 'package:flutter_application_1/screens/despensa_screen.dart';
 import 'package:flutter_application_1/screens/detail_movie_screen.dart';
@@ -44,7 +45,8 @@ class MyApp extends StatelessWidget {
             "/despensa" : (BuildContext context) => DespensaScreen(),
             "/onboard" : (BuildContext context) => OnBoardingScreen(),
             "/movies" : (BuildContext context) => PopularMoviesScreen(),
-            "/detail" : (BuildContext context) => DetailMovieScreen()
+            "/detail" : (BuildContext context) => DetailMovieScreen(),
+            "/register" : (BuildContext context) => PickImage()
           },
         );
       }
