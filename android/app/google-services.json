@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "483027289801",
+    "project_id": "pmsn-bbc53",
+    "storage_bucket": "pmsn-bbc53.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483027289801:android:eaffef7ed47541f463af18",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvILr4r1MPu4HfDn72LRD9NGY-3fY8gd4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
