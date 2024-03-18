@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/services/email_auth_firebase.dart';
 import 'package:flutter_application_1/setting/CustomTextField.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -24,6 +25,8 @@ class _PickImageState extends State<PickImage> {
    final _formKey = GlobalKey<FormState>(); 
   
    String datosValidados = "";
+
+   final auth_firebase= EmailAuthFirebase();
 
 
     @override
@@ -62,7 +65,7 @@ class _PickImageState extends State<PickImage> {
                         )
                       : const CircleAvatar(
                           radius: 100,
-                          backgroundImage: AssetImage("assets/user.jpg"),
+                          backgroundImage: AssetImage("images/user.jpg"),
                         ),
                 ),
                  SizedBox(height: 20,),
@@ -108,10 +111,17 @@ class _PickImageState extends State<PickImage> {
                 ),
                 ElevatedButton(
                   onPressed: () {
+
                    if (_formKey.currentState!.validate()) {
-                    setState(() {
-                      datosValidados = "Todos los datos son correctos";
-                    });
+                    auth_firebase.singUpUser(
+                      name: nameController.text,
+                      email: emailController.text,
+                      password: passwordController.text 
+                      ).then((value) {
+                        if (value) {
+                          const Text("Datos validos");
+                        }
+                      });
                    }
                   },
                   child: const Text(

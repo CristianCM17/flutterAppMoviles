@@ -49,6 +49,7 @@ dependencies:
   cloud_firestore: ^4.15.8
   firebase_auth: ^4.16.0
   image_picker: ^1.0.7
+  youtube_player_flutter: ^9.0.0
   
 
 
