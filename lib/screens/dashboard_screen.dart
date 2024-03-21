@@ -52,6 +52,13 @@ class DashboardScreen extends StatelessWidget {
               },
             ),
             ListTile(
+              leading: Icon(Icons.shop),
+              title: Text("Mi despensa en Firebase "),
+              subtitle: Text("Relacion de productos que no voy a usar"),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () => Navigator.pushNamed(context, "/products"),
+            ),
+            ListTile(
               leading: Icon(Icons.app_registration_rounded), //elementos de lado izquiero y derecho
               title: Text("Registrar"),
               subtitle: Text("Registrar Usuario"),

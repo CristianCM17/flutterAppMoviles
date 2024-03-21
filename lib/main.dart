@@ -6,9 +6,11 @@ import 'package:flutter_application_1/screens/despensa_screen.dart';
 import 'package:flutter_application_1/screens/detail_movie_screen.dart';
 import 'package:flutter_application_1/screens/onBoarding_screen.dart';
 import 'package:flutter_application_1/screens/popular_movies_screen.dart';
+import 'package:flutter_application_1/screens/products_firebase_screen.dart';
 import 'package:flutter_application_1/screens/splash_screen.dart';
 import 'package:flutter_application_1/setting/app_value_notifier.dart';
 import 'package:flutter_application_1/setting/theme.dart';
+
 
 
 void main() async {
@@ -46,7 +48,8 @@ class MyApp extends StatelessWidget {
             "/onboard" : (BuildContext context) => OnBoardingScreen(),
             "/movies" : (BuildContext context) => PopularMoviesScreen(),
             "/detail" : (BuildContext context) => DetailMovieScreen(),
-            "/register" : (BuildContext context) => PickImage()
+            "/register" : (BuildContext context) => PickImage(),
+            "/products" : (BuildContext context) => ProductsFirebaseScreen(), 
           },
         );
       }
