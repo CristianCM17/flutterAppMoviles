@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/model/popular_model.dart';
 import 'package:flutter_application_1/network/api_actors.dart';
+import 'package:flutter_application_1/network/api_genres.dart';
 import 'package:flutter_application_1/network/api_video.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
@@ -17,6 +18,7 @@ class DetailMovieScreen extends StatefulWidget {
 class _DetailMovieScreenState extends State<DetailMovieScreen> {
   ApiVideo? apiVideo;
   ApiActors? apiActors;
+  ApiGenres apiGenres = ApiGenres();
 
   @override
   void initState() {
@@ -132,19 +134,64 @@ class _DetailMovieScreenState extends State<DetailMovieScreen> {
                             height: 0,
                           ),
                         ),
-                        Container(
-                          margin: EdgeInsets.only(left: 20),
-                          child: Text(
-                            popularModel.originalLanguage!.toUpperCase(),
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontFamily: 'K2D',
-                              fontWeight: FontWeight.w300,
-                              height: 0,
-                            ),
+                        Flexible(
+                          child: FutureBuilder<List<String>?>(
+                            future: apiGenres.getGenres(popularModel.id as int),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const CircularProgressIndicator();
+                              } else if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              } else if (snapshot.hasData) {
+                                List<String>? genres = snapshot.data;
+                                if (genres != null && genres.isNotEmpty) {
+                                  return SizedBox(
+                                    height:
+                                        30.0, // Altura del ListView horizontal
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: genres.length,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                          margin: EdgeInsets.only(left: 10.0),
+                                          padding: EdgeInsets.all(5.0),
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff9b9b9b),
+                                            borderRadius:
+                                                BorderRadius.circular(50.0),
+                                          ),
+                                          child: Text(
+                                            genres[index],
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15,
+                                              fontFamily: 'K2D',
+                                              fontWeight: FontWeight.w300,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  );
+                                } else {
+                                  return const Text(
+                                    'No se encontraron géneros para esta película.',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  );
+                                }
+                              } else {
+                                return const Text(
+                                  'No se encontraron géneros para esta película.',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                );
+                              }
+                            },
                           ),
-                          
                         ),
                       ],
                     ),
