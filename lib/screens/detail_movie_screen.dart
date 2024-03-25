@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/model/popular_model.dart';
 import 'package:flutter_application_1/network/api_actors.dart';
+import 'package:flutter_application_1/network/api_favorites.dart';
 import 'package:flutter_application_1/network/api_genres.dart';
 import 'package:flutter_application_1/network/api_video.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
@@ -20,11 +21,21 @@ class _DetailMovieScreenState extends State<DetailMovieScreen> {
   ApiActors? apiActors;
   ApiGenres apiGenres = ApiGenres();
 
+    bool isFavorite = false;
+    final ApiFavorites apiFavorites = ApiFavorites();
+    Key favoriteKey = UniqueKey();
+
   @override
   void initState() {
     apiVideo = ApiVideo();
     apiActors = ApiActors();
     super.initState();
+  }
+
+   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _checkIsFavorite();
   }
 
   @override
@@ -38,8 +49,9 @@ class _DetailMovieScreenState extends State<DetailMovieScreen> {
         foregroundColor: Colors.white,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.favorite_outline_sharp),
+            onPressed: _toggleFavorite,
+            icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border,
+              color: Colors.white),
             tooltip: 'Agregar a favoritos',
           ),
         ],
@@ -326,5 +338,38 @@ class _DetailMovieScreenState extends State<DetailMovieScreen> {
         ),
       ),
     );
+  }
+    void _checkIsFavorite() async {
+    final popularModel =
+        ModalRoute.of(context)!.settings.arguments as PopularModel;
+    try {
+      final favoriteMovies = await apiFavorites.getFavoriteMovies();
+      setState(() {
+        isFavorite =
+            favoriteMovies.any((movie) => movie['id'] == popularModel.id);
+      });
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
+  void _toggleFavorite() async {
+    final popularModel =
+        ModalRoute.of(context)!.settings.arguments as PopularModel;
+    try {
+      if (isFavorite) {
+        await apiFavorites.removeFromFavorites(popularModel.id!);
+      } else {
+        await apiFavorites.addToFavorites(popularModel.id!);
+      }
+
+      _checkIsFavorite();
+
+      setState(() {
+        favoriteKey = UniqueKey();
+      });
+    } catch (e) {
+      print('Error: $e');
+    }
   }
 }

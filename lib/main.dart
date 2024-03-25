@@ -4,6 +4,7 @@ import 'package:flutter_application_1/screens/Register_Screen.dart';
 import 'package:flutter_application_1/screens/dashboard_screen.dart';
 import 'package:flutter_application_1/screens/despensa_screen.dart';
 import 'package:flutter_application_1/screens/detail_movie_screen.dart';
+import 'package:flutter_application_1/screens/favorite_screen.dart';
 import 'package:flutter_application_1/screens/onBoarding_screen.dart';
 import 'package:flutter_application_1/screens/popular_movies_screen.dart';
 import 'package:flutter_application_1/screens/products_firebase_screen.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
             "/detail" : (BuildContext context) => DetailMovieScreen(),
             "/register" : (BuildContext context) => PickImage(),
             "/products" : (BuildContext context) => ProductsFirebaseScreen(), 
+            "/favorites" : (BuildContext context) => FavoritesMoviesScreen()
           },
         );
       }
