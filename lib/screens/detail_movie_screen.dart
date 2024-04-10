@@ -5,6 +5,7 @@ import 'package:flutter_application_1/network/api_actors.dart';
 import 'package:flutter_application_1/network/api_favorites.dart';
 import 'package:flutter_application_1/network/api_genres.dart';
 import 'package:flutter_application_1/network/api_video.dart';
+import 'package:flutter_application_1/setting/app_value_notifier.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -82,12 +83,15 @@ class _DetailMovieScreenState extends State<DetailMovieScreen> {
                   // Construye el reproductor de YouTube
                   return YoutubePlayer(
                       controller: _controller,
-                      showVideoProgressIndicator: true,
+                      bottomActions: [
+                        ProgressBar(isExpanded: true,)
+                      ],
+                      showVideoProgressIndicator: false,
                       progressIndicatorColor: Colors.red,
                       progressColors: const ProgressBarColors(
                         playedColor: Colors.red,
                         handleColor: Colors.redAccent,
-                      ));
+                      ),);
                 } else {
                   // Si no hay datos disponibles (puede ocurrir durante la inicialización)
                   return Container(
@@ -358,9 +362,11 @@ class _DetailMovieScreenState extends State<DetailMovieScreen> {
         ModalRoute.of(context)!.settings.arguments as PopularModel;
     try {
       if (isFavorite) {
-        await apiFavorites.removeFromFavorites(popularModel.id!);
+        await apiFavorites.removeFromFavorites(popularModel.id!).then((value) => AppValueNotifier.banfavorites.value =
+                                          !AppValueNotifier.banfavorites.value);
       } else {
-        await apiFavorites.addToFavorites(popularModel.id!);
+        await apiFavorites.addToFavorites(popularModel.id!).then((value) => AppValueNotifier.banfavorites.value =
+                                          !AppValueNotifier.banfavorites.value);
       }
 
       _checkIsFavorite();
