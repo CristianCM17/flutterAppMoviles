@@ -72,6 +72,14 @@ class DashboardScreen extends StatelessWidget {
               trailing: Icon(Icons.chevron_right),
               onTap: () => {Navigator.pushNamed(context, "/register")},
             ),
+            ListTile(
+              leading: Icon(Icons
+                  .map_outlined), //elementos de lado izquiero y derecho
+              title: Text("Ir a mapa"),
+              subtitle: Text("Checar Mapa"),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () => {Navigator.pushNamed(context, "/mapa")},
+            ),
             DayNightSwitcher(
               isDarkModeEnabled: AppValueNotifier
                   .banTheme.value, //trae el valor del value notifier
