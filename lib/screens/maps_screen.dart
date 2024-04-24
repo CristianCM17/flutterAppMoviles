@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'package:circular_menu/circular_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 class MapSample extends StatefulWidget {
   const MapSample({super.key});
 
@@ -23,22 +25,45 @@ class MapSampleState extends State<MapSample> {
       tilt: 59.440717697143555,
       zoom: 19.151926040649414);
 
+  static const LatLng sourceLocation = LatLng(20.177973, -100.988347);
+  static const LatLng destination = LatLng(20.536156, -100.816050);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
+        body: CircularMenu(
+      alignment: Alignment.bottomLeft,
+      items: [
+        CircularMenuItem(
+          onTap: () {},
+          icon: Icons.map,
+          color: Colors.green,
+        ),
+        CircularMenuItem(
+          onTap: () {},
+          icon: Icons.map_sharp,
+          color: Colors.purple,
+        ),
+        CircularMenuItem(
+          onTap: () {},
+          icon: Icons.map_rounded,
+          color: Colors.blue,
+        ),
+        CircularMenuItem(
+          onTap: () {},
+          icon: Icons.satellite_alt,
+          color: Colors.yellow,
+        )
+      ],
+      backgroundWidget: GoogleMap(
         mapType: MapType.hybrid,
-        initialCameraPosition: _kGooglePlex,
+        initialCameraPosition: CameraPosition(target: sourceLocation, zoom: 14.5),
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: const Text('To the lake!'),
-        icon: const Icon(Icons.directions_boat),
-      ),
-    );
+    )
+        );
   }
 
   Future<void> _goToTheLake() async {

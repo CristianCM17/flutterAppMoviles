@@ -53,6 +53,10 @@ dependencies:
   flutter_carousel_widget: ^2.2.0
   flutter_rating_stars: ^1.0.3+4
   google_maps_flutter: ^2.6.0
+  circular_menu: ^3.0.0
+  flutter_polyline_points: ^2.0.0
+  location: ^6.0.1
+  flutter_svg: ^2.0.10+1
   
 
 
